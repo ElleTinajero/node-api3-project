@@ -2,7 +2,7 @@ const express = require('express');
 const users = require('./userDb')
 const router = express.Router();
 
-//CREATE USERS
+//CREATE USERS //
 router.post('/users', validateUser(), (req, res) => {
   users.insert(req.body)
     .then((user) => {
@@ -38,14 +38,14 @@ router.post('/users/:id/posts', validateUserId(), (req, res) => {
 });
 
 
-//GET USERS
+//GET USERS //
 router.get('/users', (req, res) => {
   // const options = {
 	// 	sortBy: req.query.sortBy,
 	// 	limit: req.query.limit,
   // }
   
-  users.find()
+  users.get()
 		.then((users) => {
 			res.status(200).json(users)
 		})
@@ -58,14 +58,14 @@ router.get('/users', (req, res) => {
 });
 
 
-//GET USERS BY ID
+//GET USERS BY ID //
 router.get('/users/:id', validateUserId(), (req, res) => {
   res.status(200).json(req.user)
 });
 
 
-//GET USER POSTS
-router.get('/users/:id/posts', validateUserId(), validatePost(), (req, res) => {
+//GET USER POSTS //
+router.get('/users/:id/posts', validateUserId(), (req, res) => {
   users.getUserPosts(req.params.id)
     .then((posts) => {
       res.status(200).json(posts)

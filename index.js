@@ -5,7 +5,7 @@ const userRouter = require("./users/userRouter")
 const server = express()
 const port = 5000
 
-server.use(express.json)
+server.use(express.json())
 server.use(logger("long"))
 server.use(userRouter)
 
